@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <title>
+        <%=title %>
+    </title>
+    <link type="text/css" href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <head>
+        <h1>
+            <%=title %>
+        </h1>
+
+    </head>
+    <div role="main">
+        <p>
+            <%=content %>
+        </p>
+        <form method="post" action="/other">
+            <p>
+                <input type="text" name="msg">
+                <input type="submit" value="Click">
+            </p>
+        </form>
+        <div role="main">
+            <table>
+                <% for(let key in data){ %>
+                    <!-- テーブル出力の部分のhtmlは別ファイルから呼び出し
+                     パーシャルファイルの内容を書き換えると出力も変わる。 -->
+                    <%- include('data_item',{key:key,val:[data[key]]}) %>
+                <% } %>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

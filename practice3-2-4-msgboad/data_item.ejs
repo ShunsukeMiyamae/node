@@ -1,0 +1,12 @@
+<% if (val !='' ){ %>
+<!-- Jsonデータをオブジェクトに変換 -->
+<% let obj=JSON.parse(val); %>
+<tr>
+    <th>
+        <%= obj.id %>
+        </th>
+        <td>
+            <%= obj.msg %>
+        </td>
+    </tr>
+<% } %>

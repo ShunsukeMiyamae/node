@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" content="text/html" ; charset="UTF-8">
+    <title>
+        <%=title %>
+    </title>
+    <link type="text/css" href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            <%=title %>
+        </h1>
+
+    </header>
+    <div role="main">
+        <p>
+            <%=content %>
+        </p>
+        <form method="post" action="/other">
+            <input type="text" name="msg">
+            <input type="submit" value="Click">
+        </form>
+        <table>
+            <!-- JavaScriptのfor文でオブジェクトの内容をテーブルに出力
+                 % %の中身は最終的につながって解釈されるので別々のタグに
+                 JavaScriptを書いても問題ない。 -->
+            <% for(let key in data){ %>
+                <tr>
+                    <th>
+                        <%= key %>
+                    </th>
+                    <td>
+                        <%= data[key] %>
+                    </td>
+                </tr>
+                <% } %>
+        </table>
+    </div>
+
+</body>
+
+</html>

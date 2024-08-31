@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" content="text/html" ; charset="UTF-8">
+    <title> ミニメッセージボード </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <script>
+        function init() {
+            // ローカルストレージの取得。ローカルストレージはクライアントの
+            // ブラウザ内でのみ使用できる。キーを指定して値を取得する。
+            // idが取得できたらフォームに表示。
+            let id = localStorage.getItem('id');
+            console.log('aaaaaa7,id');
+            if (id == null) {
+                // idがなければログインページへ遷移。
+                // 現在開いているページはlocationオブジェクトに記録されている。
+                // これを書き換えることでページを遷移する。
+                // aタグではクリックしないと遷移しない
+                location.href = './login';
+            }
+            document.querySelector('#id').textContent = 'ID:' + id;
+            document.querySelector('#id_input').value = id;
+        }
+    </script>
+</head>
+
+<body class="container" onload="init();">
+    <header>
+        <h1 class="display-4">メッセージボード</h1>
+    </header>
+    <div role="main">
+        <p>※メッセージは最大10個まで保管されます。</p>
+        <form method="post" action="/">
+            <p id="id"></p>
+            <input type="hidden" id="id_input" name="id">
+            <div class="form-group">
+                <label for="msg">Message</label>
+                <input type="text" name="msg" id="msg" class="form-control">
+            </div>
+            <input type="submit" value="送信" class="btn btn_primary">
+        </form>
+        <table class="table">
+            <% for(let i in data) { %>
+                <%- include('data_item',{val:data[i]}) %>
+                    <% } %>
+        </table>
+    </div>
+</body>
+
+</html>
